@@ -29,10 +29,10 @@ Folly Format  |          380.4 |                 103 |                90
 stb_sprintf   |            6.9 |                  62 |                58
 pformat       |          130.0 |                  82 |                78
 
-Some pformat as very high compilation times. The compilation times some of
-other libaries are surprisingly high. The test builds 100 translation unit tech printing
+The pformat libary has very high compilation times. The test builds 100 translation unit tech printing
 5 formats with a mix of integers and strings with 1 to 5 parameters each. That is not
-a lot of functionality.
+a lot of functionality. The compilation times some of
+other libaries are surprisingly high, too.
 
 So, it is clear: Reducing compilation times of pformat is the next task. There is still
 a lot to learn and understand the tradeoffs.
