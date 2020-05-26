@@ -38,9 +38,11 @@ auto array_names = std::make_unique<vector<string>>();
 
 *[5/5]* Factory methods appears to be quite uncommon in C++, but the argumentation applies 100%. With return value optimization, there isn’t even much extra overhead associated with it. Effective Modern C++ doesn't mention factories. Effective C++ mentions factories but doesn't appear to discuss when and why to use them. A subset of what is covered in Item 1 is also covered by [C.50](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rc-factory). While I do not consider Abseils TotW in this article, it is interesting that [TotW 42](https://abseil.io/tips/42) is a match.
 
-#### Item 2: Consider a builder when faced with many constructors
+### Item 2: Consider a builder when faced with many constructors
 
 *[5/5]* In my view, the argument applies 100% for C++. A constructor with many elements is as bad in C++ as it is in Java. Neither the EC or EMC books nor the core guidelines do not talk about the builder pattern.
+
+This [article](https://refactoring.guru/design-patterns/builder/cpp/example) gives the builder pattern 3 out of 4 stars for popularity in C++ and while the motivation is correct never ever write the code as given in that article.
 
 ### Item 3: Enforce the singleton property with a private constructor or enum type
 
@@ -62,7 +64,7 @@ There is a reading in which there is more similarity. Unnecessary objects are di
 
 ### Item 7: Eliminate obsolete object references
 
-*[2/5]* In C++ we think much more about object lifetimes, so many this is obvious to a C++ developer, but just a couple of weeks ago I had to read the code of a hand-written container class (where 'std::vector' should just have been used) which didn’t call the destructor on clear().
+*[2/5]* In C++ we think much more about object lifetimes, so many this is obvious to a C++ developer, but just a couple of weeks ago I had to read the code of a hand-written container class (where `std::vector` should just have been used) which didn’t call the destructor on clear().
 
 ### Item 8: Avoid finalizers and cleaners
 
@@ -94,11 +96,11 @@ on hash code and how to test that the hash code matches `operator==`.
 
 ### Item 12: Always override toString()
 
-*[0/5]* The equivalent would to always provide an `operator<<` method, I guess. Nobody does that.
+*[1/5]* The equivalent would to always provide an `operator<<` method, I guess. Nobody does that.
 
 ### Item 13: Override clone judiciously
 
-*[0/5]* An interesting difference between Java and C++. The equivalent of `clone` is
+*[1/5]* An interesting difference between Java and C++. The equivalent of `clone` is
 the copy/move constructor and assignment operator and they come with ever object unless
 you opt-out. In Java, you have to implement the `Clonable` interface. If the interface is implemented, the default implementation of `clone` copies all the field in a shallow copy, which matches C++'s behaviour if e.g. a class contains a `shared_ptr` member, but
 it doesn't match for embedded members.
@@ -208,11 +210,11 @@ This guideline holds for C++. Surprisingly, the core guidelines don’t mention 
 
 ### Item 31: use bounded wildcards to increase API flexibility
 
-*[1/5]* Does not apply. Interesting concept. Maybe the same thing can be done with lot of [SEINAE](https://en.cppreference.com/w/cpp/language/sfinae).
+*[1/5]* Does not apply. Interesting concept. Maybe the same thing can be done with lot of [SFINAE](https://en.cppreference.com/w/cpp/language/sfinae).
 
 ### Item 32: Combine generics and varargs judiciously
 
-*[0/5]* Does not apply to C++. Varargs in Java is similar to initializer lists in C++. However, varargs are implemented with raw arrays in Java, which do not play well with generics for annoying technical reasons.
+*[1/5]* Does not apply to C++. Varargs in Java is similar to initializer lists in C++. However, varargs are implemented with raw arrays in Java, which do not play well with generics for annoying technical reasons.
 
 ### Item 33: Consider typesafe heterogeneous containers
 
@@ -226,19 +228,19 @@ Enums are much nicer to use in Java than in C++. Oh, I miss Java enums. However,
 
 ### Item 34: Use enums instead of int constants
 
-*[5/5]* True, no discussion. This is covered in Enum.1 of the core guidelines.
+*[5/5]* True, no discussion. This is covered in [Enum.1](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Renum-macro) of the core guidelines.
 
 ### Item 35: Use instance fields instead of ordinals
 
-*[0/5]* Enums don’t have instance fields in C++. We only have the ordinals aka casting an enum to its underlying type. So this guideline does not apply to C++.
+*[1/5]* Enums don’t have instance fields in C++. We only have the ordinals aka casting an enum to its underlying type. So this guideline does not apply to C++.
 
 ### Item 36: use EnumSet instead of bit fields
 
-*[0/5]* C++ doesn’t have the equivalent to EnumSet in the standard. So this doesn’t apply. EnumSet is nice. It is a type safe-way to work with a set of enums. The implementation uses a simple integer when the enum type has less than 64 members and a set for the uncommon case of more than 64 members. People build such a class for themselves with more or less quality.
+*[1/5]* C++ doesn’t have the equivalent to `EnumSet` in the standard. So this doesn’t apply. EnumSet is nice. It is a type safe-way to work with a set of enums. The implementation uses a simple integer when the enum type has less than 64 members and a set for the uncommon case of more than 64 members. People build such a class for themselves with more or less quality.
 
 ### Item 37: use EnumMap instead of ordinal indexing
 
-*[1/5]* This doesn't apply. We would just use the enum (class) as key of a container because an enum instance is a fully supported object in C++ while an enum in Java is like a primitive type, so the EnumMap workaround is needed. The split into objects and primitive types is the single most annoying issue in Java.
+*[1/5]* This doesn't apply. We would just use the enum (class) as key of a container because an enum instance is a fully supported object in C++ while an enum in Java is like a primitive type, so the `EnumMap` workaround is needed. The split into objects and primitive types is the single most annoying issue in Java.
 
 ### Item 38: Emulate extensible enums with interfaces
 
@@ -246,7 +248,7 @@ Enums are much nicer to use in Java than in C++. Oh, I miss Java enums. However,
 
 ### Item 39: Prefer annotations to naming patterns
 
-*[0/5]* C++ doesn’t have a direct equivalent technology to annotations. C++’s annotations have a similar purpose to Java’s annotations but are hardcoded into the compiler and are not extensible or queryable at runtime. Since there is no runtime reflection in C++, one cannot build 'magic' with naming patterns.
+*[1/5]* C++ doesn’t have a direct equivalent technology to annotations. C++’s annotations have a similar purpose to Java’s annotations but are hardcoded into the compiler and are not extensible or queryable at runtime. Since there is no runtime reflection in C++, one cannot build 'magic' with naming patterns.
 
 ### Item 40: Consistently use the Override annotation
 
@@ -292,7 +294,7 @@ algorithms, AFAIK there are not yet parallelism capabilities for ranges.
 
 ### Item 43: Prefer method references to lambdas
 
-*[0/5]* In C++ we have method pointers and method references, but we cannot just use them so easily instead of a lambda. So, this doesn’t apply.
+*[1/5]* In C++ we have method pointers and method references, but we cannot just use them so easily instead of a lambda. So, this doesn’t apply.
 
 In Java, you can write
 
@@ -339,8 +341,8 @@ There is no guideline about the topic.
 
 ### Item 47: Prefer Collection to Stream as return type
 
-*[0/5]* Does not apply to C++'s ranges. The output of a ranges chain
-will feed into a ranged for loop (aka begin() and end() are available).
+*[1/5]* Does not apply to C++'s ranges. The output of a ranges chain
+will feed into a ranged for loop (aka `begin()` and `end()` are available).
 
 ### Item 48: Use caution when making streams parallel
 
@@ -372,7 +374,7 @@ We have methods in C++, so a lot might apply.
 
 ### Item 53: use varargs judiciously
 
-*[0/5]* Java varargs sound similar to C’s varargs system that C++ inherited, but it is actually very different. It looks syntactically a lot like variadic templates, but they are like initializer lists.
+*[1/5]* Java varargs sound similar to C’s varargs system that C++ inherited, but it is actually very different. It looks syntactically a lot like variadic templates, but they are like initializer lists.
 
 The tip deals mostly how to enforce at least one parameter in the vararg list, which isn't possibly nicely with initializer list, but would be possible with variadic templates where the type is limited with [enable_if](https://en.cppreference.com/w/cpp/types/enable_if) or static asserts. However, one of that is nice.
 
@@ -382,7 +384,7 @@ The tip deals mostly how to enforce at least one parameter in the vararg list, w
 
 ### Item 55: Return optionals judiciously
 
-*[3/5]* Optional is very similar to 'std::optional', but it might surprise you. In its argumentation, the tip doesn’t really apply to `std::optional` in any way. I give this 0 of 5. This is surprising, the same name used for the same reason, but the tip doesn't apply.
+*[3/5]* `Optional` is very similar to `std::optional`, but it might surprise you. In its argumentation, the tip doesn’t really apply to `std::optional` in any way. I give this 0 of 5. This is surprising, the same name used for the same reason, but the tip doesn't apply.
 
 [Abseil's tip 163](https://abseil.io/tips/163) about optional and why
 it is likely not a good idea to use optional to pass parameters to a function and
@@ -418,7 +420,7 @@ One would assume that most tips about general programming would be applicable. W
 
 ### Item 61: Prefer primitive types to boxed primitives
 
-*[0/5]* The difference between primitive types and boxed types is one of the worst elements of Java. In C++, thankfully, almost everything is an object (in C++’s sense of an object) and there is no difference.
+*[1/5]* The difference between primitive types and boxed types is one of the worst elements of Java. In C++, thankfully, almost everything is an object (in C++’s sense of an object) and there is no difference.
 
 ### Item 62: Avoid strings when other types are more appropriate
 
@@ -434,15 +436,13 @@ I cannot find a matching guideline in C++. However, [Abseil TotW/3](https://abse
 
 [5/5] Java developers make a much better job in general to specific interfaces and contracts and code against interfaces instead of implementations, but just because C++ often doesn’t do a good job here doesn’t make the tip wrong.
 
-Talking about OOP, my impression is that OOP has been declared too much overhead in C++ and C++ engineers, in general, forgot how to use object-oriented programming even when it is applicable.
-
 ### Item 65: Prefer interfaces to reflection
 
-*[1/5]* C++ doesn’t have reflection
+*[1/5]* C++ doesn’t have reflection at this point.
 
 ### Item 66: use native methods judiciously
 
-*[0/5]* Does not apply to C++. Maybe I can find `extern "C"` functions are the C++ equivalent to native methods, but that would be a stretch.
+*[1/5]* Does not apply to C++. Maybe I can find `extern "C"` functions are the C++ equivalent to native methods, but that would be a stretch.
 
 ### Item 67: Optimize judiciously
 
@@ -467,7 +467,7 @@ The exception system in Java and C++ works quite differently. And I have to emit
 
 ### Item 71: Avoid unnecessary use of checked exceptions
 
-*[0/5]* C++ doesn’t have checked exceptions. Thus, this doesn’t apply.
+*[1/5]* C++ doesn’t have checked exceptions. Thus, this doesn’t apply.
 
 ### Item 72: Favor the use of standard exceptions
 
@@ -535,27 +535,27 @@ Java’s built-in serialization system is a mess. I expect that no item is appli
 
 ### Item 85: Prefer alternatives to Java serialization
 
-[0/5] Should be obvious why
+[1/5] Should be obvious why
 
 ### Item 86: Implement Serialization with great caution
 
-[0/5] Does not apply
+[1/5] Does not apply
 
 ### Item 87: Consider using  custom serialized form
 
-[0/5] Does not apply
+[1/5] Does not apply
 
 ### Item 88: Write readObject methods defensively
 
-[0/5] Does not apply
+[1/5] Does not apply
 
 ### Item 89: For instance control, prefer enum types to readResolve
 
-[0/5] Does not apply
+[1/5] Does not apply
 
 ### Item 90: Consider serialization proxies instead of serialized instances
 
-[0/5] Does not apply
+[1/5] Does not apply
 
 Yes, 0 of 6 apply. Honestly, the framework is so broken, the chapter should be condensed to "Don't use it. Ever".
 
