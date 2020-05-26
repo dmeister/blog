@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Effective Java: The missing book for C++
+title:  Effective Java is the missing book for C++
 ---
 
 One of my favourite books is ["Effective Java" by Joshua Bloch](https://www.oreilly.com/library/view/effective-java-3rd/9780134686097/). I am a Java developer by training who just happen to have landed in infrastructure and systems programming. I am mostly using Modern C++ at this point. It is still my favourite book. It contains 90 guidelines on how to use the Java language well.
