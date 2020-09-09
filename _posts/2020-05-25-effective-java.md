@@ -3,7 +3,9 @@ layout: post
 title:  Effective Java is the missing book for C++
 ---
 
-One of my favourite books is ["Effective Java" by Joshua Bloch](https://www.oreilly.com/library/view/effective-java-3rd/9780134686097/). I am a Java developer by training who just happen to have landed in infrastructure and systems programming. I am mostly using Modern C++ at this point. It is still my favourite book. It contains 90 guidelines on how to use the Java language well.
+One of my favorite books is ["Effective Java" by Joshua Bloch](https://www.oreilly.com/library/view/effective-java-3rd/9780134686097/).
+I am a Java developer by training who just happen to have landed in infrastructure and systems programming.
+I am mostly using Modern C++ at this point. It is still my favorite book. It contains 90 guidelines on how to use the Java language well.
 
 My theory is that C++ developers should read effective Java. Thus, the clickbait title. It is the missing book for C++.
 
@@ -54,7 +56,7 @@ This [article](https://refactoring.guru/design-patterns/builder/cpp/example) giv
 
 ### Item 5: Prefer dependency injection to hardwiring resources
 
-*[5/5]* Applies to 100%. I cannot find any code guideline about it. At Pure, we have a nice system for this.
+*[5/5]* Applies to 100%. I cannot find any core guideline about it. At Pure, we have a nice system for this.
 
 ### Item 6: Avoid creating unnecessary objects
 
@@ -89,7 +91,7 @@ of == implementations, which are not really implementing the contract.
 
 ### Item 11: Always override hashcode when you override equals
 
-*[4/5]* Again, this needs to be rephrased a bit. If you provide a hash function it better matches the == and < operators. But there is no need in C++ to always provide a hash function just because == or < is available. This is a weirdness of Java. However, thecore guidelines do not mention that == and any hash overload should match up in a certain way. This is an important guideline has it can lead to subtle bugs if `==` and `std::hash` do not match up.
+*[4/5]* Again, this needs to be rephrased a bit. If you provide a hash function it better matches the == and < operators. But there is no need in C++ to always provide a hash function just because == or < is available. This is a weirdness of Java. However, the core guidelines do not mention that == and any hash overload should match up in a certain way. This is an important guideline has it can lead to subtle bugs if `==` and `std::hash` do not match up.
 
 [Abseil's tip 152](https://abseil.io/tips/152) talks about Abseil's approach
 on hash code and how to test that the hash code matches `operator==`.
@@ -102,7 +104,7 @@ on hash code and how to test that the hash code matches `operator==`.
 
 *[1/5]* An interesting difference between Java and C++. The equivalent of `clone` is
 the copy/move constructor and assignment operator and they come with ever object unless
-you opt-out. In Java, you have to implement the `Clonable` interface. If the interface is implemented, the default implementation of `clone` copies all the field in a shallow copy, which matches C++'s behaviour if e.g. a class contains a `shared_ptr` member, but
+you opt-out. In Java, you have to implement the `Clonable` interface. If the interface is implemented, the default implementation of `clone` copies all the field in a shallow copy, which matches C++'s behavior if e.g. a class contains a `shared_ptr` member, but
 it doesn't match for embedded members.
 
 ### Item 14: Consider implementing Comparable
@@ -244,7 +246,7 @@ Enums are much nicer to use in Java than in C++. Oh, I miss Java enums. However,
 
 ### Item 38: Emulate extensible enums with interfaces
 
-*[5/5]* Enums in C++ and Java have the same issue in that they are not extensible. This tip proposes to use static final objects and subclassing. This also sounds like the right design in C++. I could not find any C++ guideline talking about this topic.
+*[5/5]* Enums in C++ and Java have the same issue in that they are not extensible. This tip proposes to use static final objects and subclassing. This also sounds like the right design in C++. I could not find any core guideline talking about this topic.
 
 ### Item 39: Prefer annotations to naming patterns
 
@@ -264,7 +266,7 @@ Enums are much nicer to use in Java than in C++. Oh, I miss Java enums. However,
 
 Java introduced Lambdas in Java 8 (in 2014). C++ introduced Lambdas in C++11.
 
-Streams (also in Java 8) are quite similar to ranges in C++20. However, they also have some overlap with standard algorithms. My knowledge about ranges in C++ is just book (or better YouTube talk knowledge).
+Streams (also in Java 8) are quite similar to ranges in C++20. However, they also have some overlap with standard algorithms. My knowledge about ranges in C++ is just book-knowledge (or better YouTube talk knowledge).
 
 In Java you can write:
 
