@@ -3,9 +3,10 @@ layout: page
 title: About
 ---
 
-Storage Software Engineer, Storage Researcher.
+- Storage Software Engineer, Storage Researcher.
+- Tech lead "Engineering Productivity" at Pure Storage
 
-All opionions are my own and do not represent my employer.
+All opinions are my own and do not represent my employer.
 
 Have questions or suggestions? Feel free to [ask me on Twitter](https://twitter.com/dirkmeister).
 
