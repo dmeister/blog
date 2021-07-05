@@ -2,8 +2,8 @@
 title: Dirk Meister
 tagline:
 description: Dirk Meister's blog
-url: https://dmeister.github.io
-baseurl: ""
+url: https://dmeister.github.io/
+baseurl: "blog"
 paginate: 5
 permalink: pretty
 
