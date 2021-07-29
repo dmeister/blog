@@ -1,4 +1,7 @@
-# Feedback on C++ solutions on interview training site AlgoExpert
+---
+layout: post
+title: Feedback on C++ solutions on interview training site AlgoExpert
+---
 
 Interviews for software engineer job position often involve coding interviews testing the basic coding and classical data structure and algorithm knowledge and understanding.
 
